@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router';
 import { useAuth } from '../auth/AuthContext';
 import {useFormik} from 'formik';
@@ -14,13 +14,13 @@ const validationSchema = Yup.object({
 
 const Login = () => {
 
-const {login, isAuthentificated } =useAuth();
+const {login, isAuthenticated } =useAuth();
 const navigate = useNavigate();
 const [error,setError]= useState('');
 
-if (isAuthentificated) {
-     navigate ('/home',{replace: true});
-}
+useEffect(() => {
+  if (isAuthenticated) navigate('/home', { replace: true });
+}, [isAuthenticated]);
 
 const formik = useFormik ({
   initialValues: {'email':'', 'password':''},
@@ -40,7 +40,6 @@ const formik = useFormik ({
             setError(data.message)
          }else{
             login(data.token)
-            //navigate('/home');
          }
       
         })
