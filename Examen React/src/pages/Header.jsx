@@ -6,4 +6,4 @@ const Header = () => {
   )
 }
 
-export default Heder
+export default Header
