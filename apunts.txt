@@ -3,4 +3,7 @@ npm install react-router-dom
 npm install jwt-decode
 npm install formik
 npm install yup
- npm install axios
+npm install axios
+VITE_API_URL=https://taulo.dwec.iesevalorpego.es/api/
+registar a casa per a crear el usuari
+treballarem en home
