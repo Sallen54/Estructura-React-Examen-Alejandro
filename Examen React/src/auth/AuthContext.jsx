@@ -7,7 +7,7 @@ const urlApi = import.meta.env.VITE_API_URL;
 const AuthContext = createContext(null);
 let logoutTimer;
 
-export function ClientAuthProvider({ children }) {
+export function AuthProvider({ children }) {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
 
@@ -23,7 +23,7 @@ export function ClientAuthProvider({ children }) {
       }
     }).then (response => {
       localStorage.setItem("user", JSON.stringify(response.data.data));
-      setClient(response.data.data);
+      setUser(response.data.data);
     });
     //setClient(decoded);
 
@@ -31,10 +31,10 @@ export function ClientAuthProvider({ children }) {
   };
 
   const logout = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     localStorage.removeItem("user");
     setToken(null);
-    setClient(null);
+    setUser(null);
     clearTimeout(logoutTimer);
   };
 
@@ -45,7 +45,7 @@ export function ClientAuthProvider({ children }) {
   };
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("client_token");
+    const storedToken = localStorage.getItem("token");
     if (!storedToken) return;
 
     try {
@@ -54,7 +54,7 @@ export function ClientAuthProvider({ children }) {
       if (decoded.exp * 1000 < Date.now()) return logout();
 
       setToken(storedToken);
-      setClient(localStorage.getItem("user") ? JSON.parse(localStorage.getItem("client_info")) : null);
+      setUser(localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null);
       startLogoutTimer(decoded.exp);
     } catch {
       logout();
@@ -65,7 +65,7 @@ export function ClientAuthProvider({ children }) {
   
 
   return (
-    <ClientAuthContext.Provider
+    <AuthContext.Provider
       value={{
         token,
         user,
@@ -75,8 +75,8 @@ export function ClientAuthProvider({ children }) {
       }}
     >
       {children}
-    </ClientAuthContext.Provider>
+    </AuthContext.Provider>
   );
 }
 
-export const useClientAuth = () => useContext(ClientAuthContext);
+export const useAuth = () => useContext(AuthContext);
