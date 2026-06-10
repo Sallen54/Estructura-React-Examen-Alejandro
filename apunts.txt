@@ -1,0 +1,6 @@
+npm install react-router
+npm install react-router-dom
+npm install jwt-decode
+npm install formik
+npm install yup
+ npm install axios
