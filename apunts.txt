@@ -9,6 +9,10 @@ registar a casa per a crear el usuari
 treballarem en home
 areapersonal noseque /me
 
+segurament gastem soles home coses simples no fara falta navegar molt
+algo de grabar
+imagenes no
+
 registrar
 https://taulo.dwec.iesevalorpego.es/api/auth/register POST
 login
@@ -17,3 +21,4 @@ areapersonal
 https://taulo.dwec.iesevalorpego.es/api/auth/me GET (protegida token)
 logout
 https://taulo.dwec.iesevalorpego.es/api/auth/logout POST (protegida token)
+
