@@ -7,3 +7,13 @@ npm install axios
 VITE_API_URL=https://taulo.dwec.iesevalorpego.es/api/
 registar a casa per a crear el usuari
 treballarem en home
+areapersonal noseque /me
+
+registrar
+https://taulo.dwec.iesevalorpego.es/api/auth/register POST
+login
+https://taulo.dwec.iesevalorpego.es/api/auth/login POST
+areapersonal
+https://taulo.dwec.iesevalorpego.es/api/auth/me GET (protegida token)
+logout
+https://taulo.dwec.iesevalorpego.es/api/auth/logout POST (protegida token)
