@@ -60,11 +60,11 @@ const Registro = () => {
   });
 
   return (
-    <>
+    <div className="position-relative p-2" style={{ zIndex: 1 }}>
       <h1>Registrarse</h1>
       <form onSubmit={formik.handleSubmit} noValidate>
         <div className="">
-          <label htmlFor="text">Nombre de usuario</label>
+          <label htmlFor="text" >Nombre de usuario</label>
         </div>
         <div className="">
           <input
@@ -119,7 +119,7 @@ const Registro = () => {
           <button type="submit" className='btn btn-dark'>Enviar</button>
         </div>
       </form>
-    </>
+    </div>
   )
 }
 

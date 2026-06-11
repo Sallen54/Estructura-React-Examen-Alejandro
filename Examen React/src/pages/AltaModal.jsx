@@ -7,11 +7,11 @@ import { useAuth } from '../auth/AuthContext.jsx';
 const urlApi = import.meta.env.VITE_API_URL;
 
 const COLORS = [
-  { cls: 'note-yellow', hex: '#FFF9C4' },
-  { cls: 'note-pink',   hex: '#F8BBD0' },
-  { cls: 'note-blue',   hex: '#BBDEFB' },
-  { cls: 'note-green',  hex: '#C8E6C9' },
-  { cls: 'note-orange', hex: '#FFE0B2' },
+  { colorsModal: 'note-yellow', hex: '#FFF9C4' },
+  { colorsModal: 'note-pink', hex: '#F8BBD0' },
+  { colorsModal: 'note-blue', hex: '#BBDEFB' },
+  { colorsModal: 'note-green', hex: '#C8E6C9' },
+  { colorsModal: 'note-orange', hex: '#FFE0B2' },
 ];
 
 const validationSchema = Yup.object({
@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
 
 const AltaModal = ({ isOpen, onClose, onNoteAdded }) => {
   const { token } = useAuth();
-  const [selectedColor, setSelectedColor] = useState(COLORS[0].cls);
+  const [selectedColor, setSelectedColor] = useState(COLORS[0].colorsModal);
   const [error, setError] = useState('');
 
   const formik = useFormik({
@@ -39,7 +39,7 @@ const AltaModal = ({ isOpen, onClose, onNoteAdded }) => {
         );
         onNoteAdded(data.data ?? data);
         resetForm();
-        setSelectedColor(COLORS[0].cls);
+        setSelectedColor(COLORS[0].colorsModal);
         onClose();
       } catch (err) {
         setError(err.response?.data?.message ?? 'Error al crear la nota');
@@ -88,14 +88,14 @@ const AltaModal = ({ isOpen, onClose, onNoteAdded }) => {
           <div className="d-flex gap-2 mb-3 mt-2">
             {COLORS.map(c => (
               <div
-                key={c.cls}
-                className={`tablon-color-dot${selectedColor === c.cls ? ' selected' : ''}`}
+                key={c.colorsModal}
+                className={`tablon-color-dot${selectedColor === c.colorsModal ? ' selected' : ''}`}
                 style={{ background: c.hex }}
-                onClick={() => setSelectedColor(c.cls)}
+                onClick={() => setSelectedColor(c.colorsModal)}
                 role="radio"
-                aria-checked={selectedColor === c.cls}
+                aria-checked={selectedColor === c.colorsModal}
                 tabIndex={0}
-                onKeyDown={e => e.key === 'Enter' && setSelectedColor(c.cls)}
+                onKeyDown={e => e.key === 'Enter' && setSelectedColor(c.colorsModal)}
               />
             ))}
           </div>
