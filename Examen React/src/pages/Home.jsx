@@ -30,19 +30,17 @@ const Home = () => {
 
   useEffect(() => {
     if (!token) return;
-    axios
-      .get(`${urlApi}notes/all`, {
-        headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
-      })
+    axios.get(`${urlApi}notes/all`, {
+      headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
+    })
       .then(({ data }) => setNotes(data.data ?? data))
       .catch(console.error);
   }, [token]);
 
   const handleToggle = (id) => {
-    axios
-      .patch(`${urlApi}notes/${id}/toggle`, {}, {
-        headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
-      })
+    axios.patch(`${urlApi}notes/${id}/toggle`, {}, {
+      headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
+    })
       .then(({ data }) => {
         const updated = data.data ?? data;
         setNotes(prev =>
@@ -54,10 +52,9 @@ const Home = () => {
 
   const handleDelete = (id) => {
     console.log(id);
-    axios
-      .delete(`${urlApi}notes/${id}`, {
-        headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
-      })
+    axios.delete(`${urlApi}notes/${id}`, {
+      headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
+    })
       .then(() => setNotes(prev => prev.filter(n => n._id !== id)))
       .catch(console.error);
   };
@@ -131,8 +128,8 @@ const Home = () => {
                     </button>
                     <button
                       className="tablon-note-btn del-btn"
-                      onClick={() => {handleDelete(note._id);console.log("Nota eliminada:", note._id);}}
-                      
+                      onClick={() => { handleDelete(note._id); console.log("Nota eliminada:", note._id); }}
+
                       aria-label="Eliminar nota"
                     >
                       X
