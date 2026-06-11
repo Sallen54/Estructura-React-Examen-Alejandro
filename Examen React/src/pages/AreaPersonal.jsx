@@ -11,7 +11,7 @@ const AreaPersonal = () => {
   }
 
   return (
-    <div>
+    <div className="position-relative p-2" style={{ zIndex: 1 }}>
       <h1>Área Personal</h1>
       {user && (
         <div>
